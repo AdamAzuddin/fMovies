@@ -7,8 +7,34 @@
 /* 
   Note: The styles for this gradient grid background is heavily inspired by the creator of this amazing site (https://dub.sh) – all credits go to them! 
 */
-html{
-  background-color: #1b262c;
+
+.navbar-dark .nav-item .nav-link {
+  color: #fff;
+}
+
+.logo,.nav-links{
+  display: none;
+}
+
+@media (min-width: 640px) {
+  /* .sm:!block {
+  display: block !important;
+  } */
+  .logo,.nav-links{
+    display: block !important;
+  }
+}
+
+.navbar-dark .nav-item .nav-link:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+  border-radius: 0.25rem;
+  color: #fff;
+}
+
+.fa-li {
+  position: relative;
+  left: 0;
 }
   
 div{
