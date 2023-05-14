@@ -28,6 +28,8 @@ import {
   ClientSafeProvider,
 } from "next-auth/react";
 
+import Link from "next/link";
+
 const products = [
   {
     name: "Watch Later",
@@ -65,7 +67,7 @@ export default function Example() {
   return (
     <header>
       <nav
-        className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8"
+        className="mx-auto flex items-center justify-between p-6 lg:px-8"
         aria-label="Global"
       >
         <div className=" justify-start logo ml-4">
@@ -73,7 +75,7 @@ export default function Example() {
         </div>
 
         <nav className=" space-x-4 justify-end ml-5 nav-links">
-          <a href="#" className="hover:text-gray-300">
+          <a href="/" className="hover:text-gray-300">
             Home
           </a>
           <a href="#" className="hover:text-gray-300">
@@ -115,13 +117,15 @@ export default function Example() {
                     />
                   </button>
                 </div>
-                <div className="rounded-full w-10 h-10 overflow-hidden">
-                  <img
-                    src="/profile.jpg"
-                    alt="Profile Picture"
-                    className="w-full h-full object-cover"
-                  />
-                </div>
+                <a href="/my-profile">
+                  <div className="rounded-full w-10 h-10 overflow-hidden">
+                    <img
+                      src="https://picsum.photos/200"
+                      alt="Profile Picture"
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                </a>
               </>
             ) : (
               <>
@@ -230,7 +234,7 @@ export default function Example() {
             <div className="-my-6 divide-y divide-gray-500/10">
               <div className="space-y-2 py-6 text-white">
                 <a
-                  href="#"
+                  href="/"
                   className="text-white hover:text-black hover:no-underline -mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 hover:bg-gray-50"
                 >
                   Home
