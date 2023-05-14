@@ -10,7 +10,8 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Header from "@components/Header";
-import NavHeader from "@components/NavHeader"
+import NavHeader from "@components/NavHeader";
+import Provider from "@components/Provider";
 
 export const metadata = {
   title: "fMovie",
@@ -31,9 +32,11 @@ const Layout = ({ children }: any) => {
       </head>
 
       <body className="bg-primary-background text-white">
-        <NavHeader/>
+        <Provider>
+          <NavHeader />
 
-        <main className="app">{children}</main>
+          <main className="app">{children}</main>
+        </Provider>
       </body>
     </html>
   );
