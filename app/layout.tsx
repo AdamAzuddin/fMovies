@@ -8,7 +8,6 @@ import {
   faSearch,
   fas,
 } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Header from "@components/Header";
 import NavHeader from "@components/NavHeader";
 import Provider from "@components/Provider";
@@ -34,7 +33,6 @@ const Layout = ({ children }: any) => {
       <body className="bg-primary-background text-white">
         <Provider>
           <NavHeader />
-
           <main className="app">{children}</main>
         </Provider>
       </body>

@@ -24,11 +24,8 @@ import {
   signOut,
   useSession,
   getProviders,
-  LiteralUnion,
-  ClientSafeProvider,
 } from "next-auth/react";
 
-import Link from "next/link";
 
 const products = [
   {
@@ -42,7 +39,6 @@ const products = [
   {
     name: "Recently Viewed",
     href: "#",
-    icon: FingerPrintIcon,
   },
 ];
 
@@ -50,18 +46,18 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
-export default function Example() {
+export default function NavHeader() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const isUserLoggedIn = true;
+  const {data: session}= useSession()
 
   const [providers, setProviders] = useState(null);
-  const [toggleDropdown, settoggleDropdown] = useState(false);
 
   useEffect(() => {
-    (async () => {
+    const setUpProviders = async () => {
       const response = await getProviders();
       setProviders(response);
-    })();
+    };
+    setUpProviders()
   }, []);
 
   return (
@@ -107,7 +103,7 @@ export default function Example() {
             <button className="flex hover:bg-gray-500">
               <FontAwesomeIcon icon={faSearch} style={{ fontSize: "1.3em" }} />
             </button>
-            {isUserLoggedIn ? (
+            {session?.user ? (
               <>
                 <div>
                   <button className="full flex items-center justify-center hover:bg-gray-500">
@@ -120,7 +116,7 @@ export default function Example() {
                 <a href="/my-profile">
                   <div className="rounded-full w-10 h-10 overflow-hidden">
                     <img
-                      src="https://picsum.photos/200"
+                      src={session?.user.image}
                       alt="Profile Picture"
                       className="w-full h-full object-cover"
                     />
