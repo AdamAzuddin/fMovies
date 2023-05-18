@@ -2,12 +2,6 @@
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import "@styles/globals.css";
-import {
-  faBars,
-  faBell,
-  faSearch,
-  fas,
-} from "@fortawesome/free-solid-svg-icons";
 import Header from "@components/Header";
 import NavHeader from "@components/NavHeader";
 import Provider from "@components/Provider";
@@ -31,9 +25,11 @@ const Layout = ({ children }: any) => {
       </head>
 
       <body className="bg-primary-background text-white">
-        <Provider>
-          <NavHeader />
-          <main className="app">{children}</main>
+        <Provider session={undefined}>
+          <main className="app">
+            <NavHeader />
+            {children}
+          </main>
         </Provider>
       </body>
     </html>

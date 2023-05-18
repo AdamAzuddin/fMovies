@@ -47,23 +47,25 @@ function classNames(...classes) {
 }
 
 export default function NavHeader() {
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const {data: session}= useSession()
-
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [providers, setProviders] = useState(null);
 
   useEffect(() => {
-    const setUpProviders = async () => {
-      const response = await getProviders();
-      setProviders(response);
-    };
-    setUpProviders()
+    (async () => {
+      const res = await getProviders();
+      setProviders(res);
+    })();
   }, []);
+  
+  console.log("Providers: "+providers);
+  
+  console.log("Session: "+session?.user);
 
   return (
-    <header>
+    <header className="w-full">
       <nav
-        className="mx-auto flex items-center justify-between p-6 lg:px-8"
+        className="mx-auto flex items-center justify-between py-6 "
         aria-label="Global"
       >
         <div className=" justify-start logo ml-4">
