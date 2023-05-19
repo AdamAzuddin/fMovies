@@ -22,15 +22,15 @@ import {
 const products = [
   {
     name: "Watch Later",
-    href: "#",
+    href: "/watch-later",
   },
   {
-    name: "Favourite",
-    href: "#",
+    name: "Favourites",
+    href: "/favourites",
   },
   {
     name: "Recently Viewed",
-    href: "#",
+    href: "/recently-viewed",
   },
 ];
 
@@ -64,11 +64,11 @@ export default function NavHeader() {
           <a href="/" className="hover:text-gray-300">
             Home
           </a>
-          <a href="#" className="hover:text-gray-300">
+          <a href="/movies" className="hover:text-gray-300">
             Movies
           </a>
-          <a href="#" className="hover:text-gray-300">
-            TV Shows
+          <a href="/series" className="hover:text-gray-300">
+            Series
           </a>
           <a href="#" className="hover:text-gray-300">
             My List
@@ -131,13 +131,13 @@ export default function NavHeader() {
           </div>
         </div>
         <Popover.Group className="hidden lg:flex lg:gap-x-12 bg-primary-background ">
-          <a href="#" className="text-sm font-semibold leading-6 ">
+          <a href="/" className="text-sm font-semibold leading-6 ">
             Home
           </a>
-          <a href="#" className="text-sm font-semibold leading-6">
+          <a href="/movies" className="text-sm font-semibold leading-6">
             Movies
           </a>
-          <a href="#" className="text-sm font-semibold leading-6">
+          <a href="/series" className="text-sm font-semibold leading-6">
             Series
           </a>
           <Popover className="relative">
@@ -226,13 +226,13 @@ export default function NavHeader() {
                   Home
                 </a>
                 <a
-                  href="#"
+                  href="/movies"
                   className="text-white hover:text-black hover:no-underline -mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading- hover:bg-gray-50"
                 >
                   Movies
                 </a>
                 <a
-                  href="#"
+                  href="/series"
                   className="text-white hover:text-black hover:no-underline -mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 hover:bg-gray-50"
                 >
                   Series
