@@ -50,10 +50,6 @@ export default function NavHeader() {
     })();
   }, []);
   
-  console.log("Providers: "+providers);
-  
-  console.log("Session: "+session?.user);
-
   return (
     <header className="w-full">
       <nav
