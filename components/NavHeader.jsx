@@ -2,26 +2,18 @@
 import { Fragment, useState, useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "@styles/globals.css";
-import { faBars, faBell, faSearch } from "@fortawesome/free-solid-svg-icons";
+import { faBell, faSearch } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Dialog, Disclosure, Popover, Transition } from "@headlessui/react";
 import {
-  ArrowPathIcon,
   Bars3Icon,
-  ChartPieIcon,
-  CursorArrowRaysIcon,
-  FingerPrintIcon,
-  SquaresPlusIcon,
   XMarkIcon,
 } from "@heroicons/react/24/outline";
 import {
   ChevronDownIcon,
-  PhoneIcon,
-  PlayCircleIcon,
 } from "@heroicons/react/20/solid";
 import {
   signIn,
-  signOut,
   useSession,
   getProviders,
 } from "next-auth/react";
