@@ -1,7 +1,14 @@
 import "@styles/globals.css";
 import MovieRow from "@components/MovieRow";
+import MovieBanner from "@components/MovieBanner";
 
 const Home = () => {
+  const movieBannerData = {
+    imageUrl: "https://example.com/banner.jpg",
+    title: "Movie Title",
+    description: "This is a movie description.",
+  };
+
   const movieRowData = [
     {
       id: 1,
@@ -47,6 +54,11 @@ const Home = () => {
 
   return (
     <div className="container mx-auto py-6">
+      <MovieBanner
+        imageUrl={movieBannerData.imageUrl}
+        title={movieBannerData.title}
+        description={movieBannerData.description}
+      />
       <MovieRow title="Action Movies" movies={movieRowData} />
     </div>
   );
