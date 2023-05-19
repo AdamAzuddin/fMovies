@@ -12,7 +12,7 @@ export default function ListDropdownMenu() {
   return (
     <Menu
       as="div"
-      className="relative inline-block text-left bg-primary-background "
+      className="relative inline-block text-left"
     >
       <div>
         <Menu.Button className="page-link inline-flex w-full justify-center gap-x-1.5 rounded-mdpx-3 py-2 text-xl">
