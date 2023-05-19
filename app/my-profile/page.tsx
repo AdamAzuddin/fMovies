@@ -1,4 +1,5 @@
-import React from "react";
+"use client"
+import {signOut} from "next-auth/react";
 
 const MyProfilePage = () => {
   return (
@@ -22,7 +23,9 @@ const MyProfilePage = () => {
         </div>
         <button
           className="bg-red-500 hover:bg-red-600 text-white font-bold py-2 px-4 rounded mt-5"
-          
+          onClick={()=>{
+            signOut()
+          }}
         >
           Sign Out
         </button>
