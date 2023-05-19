@@ -5,19 +5,10 @@ import "@styles/globals.css";
 import { faBell, faSearch } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Dialog, Disclosure, Popover, Transition } from "@headlessui/react";
-import {
-  Bars3Icon,
-  XMarkIcon,
-} from "@heroicons/react/24/outline";
-import {
-  ChevronDownIcon,
-} from "@heroicons/react/20/solid";
-import {
-  signIn,
-  useSession,
-  getProviders,
-} from "next-auth/react";
-
+import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
+import { ChevronDownIcon } from "@heroicons/react/20/solid";
+import { signIn, useSession, getProviders } from "next-auth/react";
+import ListDropdownMenu from "@components/ListDropdownMenu";
 
 const products = [
   {
@@ -39,7 +30,7 @@ function classNames(...classes) {
 }
 
 export default function NavHeader() {
-  const {data: session}= useSession()
+  const { data: session } = useSession();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [providers, setProviders] = useState(null);
 
@@ -49,7 +40,7 @@ export default function NavHeader() {
       setProviders(res);
     })();
   }, []);
-  
+
   return (
     <header className="w-full">
       <nav
@@ -61,19 +52,19 @@ export default function NavHeader() {
         </div>
 
         <nav className=" space-x-4 justify-end ml-5 nav-links">
-          <a href="/" className="hover:text-gray-300">
+          <a href="/" className="page-link">
             Home
           </a>
-          <a href="/movies" className="hover:text-gray-300">
+          <a href="/movies" className="page-link">
             Movies
           </a>
-          <a href="/series" className="hover:text-gray-300">
+          <a href="/series" className="page-link">
             Series
           </a>
-          <a href="#" className="hover:text-gray-300">
-            My List
-          </a>
+          <ListDropdownMenu />
         </nav>
+        
+        {/*Mobile*/}
         <div className="flex sm:hidden">
           <button
             type="button"
@@ -82,7 +73,7 @@ export default function NavHeader() {
           >
             <span className="sr-only">Open main menu</span>
             <Bars3Icon
-              className="h-10 w-10 "
+              className="h-10 w-10 ml-3"
               aria-hidden="true"
               color="white"
             />

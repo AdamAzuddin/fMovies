@@ -12,6 +12,18 @@
   color: #fff;
 }
 
+a:hover{
+  text-decoration-line: none;
+}
+
+.page-link{
+  color:white
+}
+.page-link:hover{
+  text-decoration-line: none;
+  --tw-text-opacity: 1;
+  color: rgb(209 213 219 / var(--tw-text-opacity));
+}
 
 .logo,.nav-links{
   display: none;
