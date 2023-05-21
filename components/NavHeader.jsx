@@ -85,8 +85,8 @@ export default function NavHeader() {
             <Search/>
             {session?.user ? (
               <>
-                <button className="full items-center justify-center hover:bg-gray-500">
-                  <FontAwesomeIcon icon={faBell} style={{ fontSize: "1em" }} />
+                <button className="full items-center justify-center">
+                  <FontAwesomeIcon icon={faBell}  className="text-[1.1em] md:text-[1.2em] lg:text-1.3em" />
                 </button>
                 <a href="/my-profile">
                   <div className="rounded-full w-10 h-10 overflow-hidden">

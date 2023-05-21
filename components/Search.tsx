@@ -6,12 +6,12 @@ export default function Search() {
                 <input
                     type="text"
                     className="block w-full px-4 py-1 border rounded-full focus:outline-none text-sm md:text-xl text-black"
-                    placeholder="Search..."
+                    placeholder="Search for anything"
                 />
                 <button className="px-4 text-white rounded-full ">
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
-                        className="w-5 h-5 md:h-8 md:w-8"
+                        className="w-[1.1em] h-[1.1em] md:h-[1.2em] md:w-[1.2em]"
                         fill="none"
                         viewBox="0 0 24 24"
                         stroke="currentColor"
