@@ -2,7 +2,6 @@
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import "@styles/globals.css";
-import Header from "@components/Header";
 import NavHeader from "@components/NavHeader";
 import Provider from "@components/Provider";
 

@@ -44,7 +44,7 @@ export default function NavHeader() {
   return (
     <header className="w-full">
       <nav
-        className="mx-auto flex items-center justify-between py-6 "
+        className="mx-auto flex items-center justify-between py-2 "
         aria-label="Global"
       >
         <div className=" justify-start logo ml-4">
@@ -63,7 +63,7 @@ export default function NavHeader() {
           </a>
           <ListDropdownMenu />
         </nav>
-        
+
         {/*Mobile*/}
         <div className="flex sm:hidden">
           <button
@@ -81,19 +81,14 @@ export default function NavHeader() {
         </div>
         <div className="flex  space-x-4 justify-end ml-auto mr-4">
           <div className="flex space-x-4">
-            <button className="flex hover:bg-gray-500">
-              <FontAwesomeIcon icon={faSearch} style={{ fontSize: "1.3em" }} />
+            <button>
+              <FontAwesomeIcon icon={faSearch}  className="text-[1em] md:text-[1.2em] lg:text-[1.3em]" />
             </button>
             {session?.user ? (
               <>
-                <div>
-                  <button className="full flex items-center justify-center hover:bg-gray-500">
-                    <FontAwesomeIcon
-                      icon={faBell}
-                      style={{ fontSize: "1.3em" }}
-                    />
-                  </button>
-                </div>
+                <button className="full items-center justify-center hover:bg-gray-500">
+                  <FontAwesomeIcon icon={faBell} style={{ fontSize: "1em" }} />
+                </button>
                 <a href="/my-profile">
                   <div className="rounded-full w-10 h-10 overflow-hidden">
                     <img
@@ -110,7 +105,7 @@ export default function NavHeader() {
                   Object.values(providers).map((provider) => (
                     <button
                       type="button"
-                      className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full mr-4"
+                      className="bg-blue-500 hover:bg-blue-700 text-white py-1 px-3 rounded-full mr-4 text-[1rem] md:text-[1.2rem]"
                       key={provider.name}
                       onClick={() => signIn(provider.id)}
                     >
@@ -121,7 +116,7 @@ export default function NavHeader() {
             )}
           </div>
         </div>
-        <Popover.Group className="hidden lg:flex lg:gap-x-12 bg-primary-background ">
+        <Popover.Group className="hidden md:flex md:gap-x-12">
           <a href="/" className="text-sm font-semibold leading-6 ">
             Home
           </a>
