@@ -74,7 +74,7 @@ export default function NavHeader() {
           >
             <span className="sr-only">Open main menu</span>
             <Bars3Icon
-              className="h-10 w-10 ml-3"
+              className="header-icon ml-3 text-bold"
               aria-hidden="true"
               color="white"
             />
@@ -86,10 +86,10 @@ export default function NavHeader() {
             {session?.user ? (
               <>
                 <button className="full items-center justify-center">
-                  <FontAwesomeIcon icon={faBell}  className="text-[1.1em] md:text-[1.2em] lg:text-1.3em" />
+                  <FontAwesomeIcon icon={faBell}  className="header-icon" />
                 </button>
                 <a href="/my-profile">
-                  <div className="rounded-full w-10 h-10 overflow-hidden">
+                  <div className="rounded-full w-9 h-9 overflow-hidden">
                     <img
                       src={session?.user.image}
                       alt="Profile Picture"
@@ -184,17 +184,9 @@ export default function NavHeader() {
         <div className="fixed inset-0 z-10" />
         <Dialog.Panel className="fixed inset-y-0 right-0 z-10 w-full overflow-y-auto bg-primary-background px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
           <div className="flex items-center justify-between">
-            <a href="#" className="-m-1.5 p-1.5">
-              <span className="sr-only">Your Company</span>
-              <img
-                className="h-8 w-auto"
-                src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
-                alt=""
-              />
-            </a>
             <button
               type="button"
-              className="-m-2.5 rounded-md p-2.5 text-gray-700"
+              className="-m-2.5 rounded-md p-2.5 text-white"
               onClick={() => setMobileMenuOpen(false)}
             >
               <span className="sr-only">Close menu</span>

@@ -11,7 +11,7 @@ export default function Search() {
                 <button className="px-4 text-white rounded-full ">
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
-                        className="w-[1.1em] h-[1.1em] md:h-[1.2em] md:w-[1.2em]"
+                        className="header-icon"
                         fill="none"
                         viewBox="0 0 24 24"
                         stroke="currentColor"

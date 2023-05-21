@@ -65,6 +65,18 @@ div{
   color: #ffffff;
 }
   
+.header-icon{
+  width: 1.1em;
+  height: 1.1em;
+
+}
+
+@media (min-width: 768px) {
+  .header-icon{
+      height: 1.2em;
+      width:1.2em
+  }
+}
 .main {
   width: 100vw;
   min-height: 100vh;
