@@ -9,6 +9,7 @@ import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import { ChevronDownIcon } from "@heroicons/react/20/solid";
 import { signIn, useSession, getProviders } from "next-auth/react";
 import ListDropdownMenu from "@components/ListDropdownMenu";
+import Search from "./Search";
 
 const products = [
   {
@@ -81,9 +82,7 @@ export default function NavHeader() {
         </div>
         <div className="flex  space-x-4 justify-end ml-auto mr-4">
           <div className="flex space-x-4">
-            <button>
-              <FontAwesomeIcon icon={faSearch}  className="text-[1em] md:text-[1.2em] lg:text-[1.3em]" />
-            </button>
+            <Search/>
             {session?.user ? (
               <>
                 <button className="full items-center justify-center hover:bg-gray-500">
