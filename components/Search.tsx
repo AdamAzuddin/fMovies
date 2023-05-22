@@ -1,28 +1,37 @@
 import { useState } from "react";
 import requests from "@utils/requests";
+import theMovieDb from "@lib/themoviedb";
+import { error } from "console";
 
+async function getSearchResults() {
+  const [search] = await Promise.all([
+    fetch(`${requests.fetchSearchResults}`).then((res) => res.json()),
+  ]);
 
-async function getSearchResults(){
-  const [
-   search,
- ] = await Promise.all([
-   fetch(`${requests.fetchSearchResults}`).then((res) => res.json()),
- ]);
-
- return {
-   props: {
-     searchResults: search.results,
-   },
- }; 
-
- 
+  return {
+    props: {
+      searchResults: search.results,
+    },
+  };
 }
 
+function successCB(data:any) {
+	console.log("Success callback: " + data);
+};
+        
+function errorCB(data:any) {
+        	console.log("Error callback: " + data);
+    };
 
 export default async function Search() {
+  theMovieDb.search.getMulti(
+    { query: "mario" },
+    successCB,
+    errorCB
+  );
   const [searchTerm, setSearchTerm] = useState("");
   const [suggestions, setSuggestions] = useState<string[]>([]);
-/* 
+  /* 
   const data=await getSearchResults();
   const suggestionArray=data.props.searchResults */
 
@@ -79,8 +88,7 @@ export default async function Search() {
       <div className="absolute top-12 overflow-y-auto max-h-40 !scrollbar-track-transparent !scrollbar-thumb-slate-700 !scrollbar-thin w-full">
         {suggestions.map((suggestion, index) => (
           <div key={index} className="text-xs md:text-xl lg:text-2xl flex">
-            
-            <img src="http://goo.gl/vyAs27" alt="image"/>
+            <img src="http://goo.gl/vyAs27" alt="image" />
             <p>{suggestion}</p>
           </div>
         ))}
