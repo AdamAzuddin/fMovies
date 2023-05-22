@@ -1,8 +1,30 @@
 import { useState } from "react";
+import requests from "@utils/requests";
 
-export default function Search() {
+
+async function getSearchResults(){
+  const [
+   search,
+ ] = await Promise.all([
+   fetch(`${requests.fetchSearchResults}`).then((res) => res.json()),
+ ]);
+
+ return {
+   props: {
+     searchResults: search.results,
+   },
+ }; 
+
+ 
+}
+
+
+export default async function Search() {
   const [searchTerm, setSearchTerm] = useState("");
   const [suggestions, setSuggestions] = useState<string[]>([]);
+/* 
+  const data=await getSearchResults();
+  const suggestionArray=data.props.searchResults */
 
   const suggestionList = [
     "Suggestion 1",
