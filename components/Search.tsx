@@ -1,39 +1,10 @@
 import { useState } from "react";
-import requests from "@utils/requests";
 import theMovieDb from "@lib/themoviedb";
-import { error } from "console";
 
-async function getSearchResults() {
-  const [search] = await Promise.all([
-    fetch(`${requests.fetchSearchResults}`).then((res) => res.json()),
-  ]);
-
-  return {
-    props: {
-      searchResults: search.results,
-    },
-  };
-}
-
-function successCB(data:any) {
-	console.log("Success callback: " + data);
-};
-        
-function errorCB(data:any) {
-        	console.log("Error callback: " + data);
-    };
-
-export default async function Search() {
-  theMovieDb.search.getMulti(
-    { query: "mario" },
-    successCB,
-    errorCB
-  );
+export default function Search() {
   const [searchTerm, setSearchTerm] = useState("");
   const [suggestions, setSuggestions] = useState<string[]>([]);
-  /* 
-  const data=await getSearchResults();
-  const suggestionArray=data.props.searchResults */
+  
 
   const suggestionList = [
     "Suggestion 1",
