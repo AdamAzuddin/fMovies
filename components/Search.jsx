@@ -1,10 +1,12 @@
 import { useState } from "react";
+import Suggestions from "@components/Suggestions" 
 import theMovieDb from "@lib/themoviedb";
 
 export default function Search() {
   const [searchTerm, setSearchTerm] = useState("");
-  const [suggestions, setSuggestions] = useState<string[]>([]);
+  const [suggestions, setSuggestions] = useState([]);
   
+  let searchSuggestion=[]
 
   const suggestionList = [
     "Suggestion 1",
@@ -18,7 +20,7 @@ export default function Search() {
     "Suggestion 3",
   ];
 
-  const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleInputChange = (event) => {
     const { value } = event.target;
     setSearchTerm(value);
 
@@ -26,8 +28,29 @@ export default function Search() {
     const filteredSuggestions = suggestionList.filter((suggestion) =>
       suggestion.toLowerCase().includes(value.toLowerCase())
     );
-    setSuggestions(filteredSuggestions);
+    console.log(value)
+
+    theMovieDb.search.getMulti(
+      {
+        query: value,
+        page: 1,
+        include_adult: false,
+      },
+      successCB,
+      errorCB
+    )
+    
   };
+
+  function successCB(data) {
+    const searchArray=JSON.parse(data).results
+    console.log(searchArray);
+    setSuggestions(searchArray)
+  };
+          
+  function errorCB(data) {
+            console.log("Error callback: " + data);
+      };
 
   return (
     <div className="relative items-center">
@@ -57,12 +80,13 @@ export default function Search() {
         </button>
       </div>
       <div className="absolute top-12 overflow-y-auto max-h-40 !scrollbar-track-transparent !scrollbar-thumb-slate-700 !scrollbar-thin w-full">
-        {suggestions.map((suggestion, index) => (
+        {/* {suggestions.map((suggestion, index) => (
           <div key={index} className="text-xs md:text-xl lg:text-2xl flex">
             <img src="http://goo.gl/vyAs27" alt="image" />
             <p>{suggestion}</p>
           </div>
-        ))}
+        ))} */}
+        <Suggestions jsonArray={suggestions}/>
       </div>
     </div>
   );

@@ -9,7 +9,7 @@ import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
 import { ChevronDownIcon } from "@heroicons/react/20/solid";
 import { signIn, useSession, getProviders } from "next-auth/react";
 import ListDropdownMenu from "@components/ListDropdownMenu";
-import Search from "./Search";
+import Search from "@components/Search";
 
 const products = [
   {
