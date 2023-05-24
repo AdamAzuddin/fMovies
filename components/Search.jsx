@@ -5,30 +5,11 @@ import theMovieDb from "@lib/themoviedb";
 export default function Search() {
   const [searchTerm, setSearchTerm] = useState("");
   const [suggestions, setSuggestions] = useState([]);
-  
-  let searchSuggestion=[]
 
-  const suggestionList = [
-    "Suggestion 1",
-    "Suggestion 2",
-    "Suggestion 3",
-    "Suggestion 1",
-    "Suggestion 2",
-    "Suggestion 3",
-    "Suggestion 1",
-    "Suggestion 2",
-    "Suggestion 3",
-  ];
 
   const handleInputChange = (event) => {
     const { value } = event.target;
     setSearchTerm(value);
-
-    // Filter the suggestion list based on the search term
-    const filteredSuggestions = suggestionList.filter((suggestion) =>
-      suggestion.toLowerCase().includes(value.toLowerCase())
-    );
-    console.log(value)
 
     theMovieDb.search.getMulti(
       {
