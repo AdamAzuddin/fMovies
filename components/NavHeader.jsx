@@ -2,7 +2,7 @@
 import { Fragment, useState, useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "@styles/globals.css";
-import { faBell, faSearch } from "@fortawesome/free-solid-svg-icons";
+import { faBell} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Dialog, Disclosure, Popover, Transition } from "@headlessui/react";
 import { Bars3Icon, XMarkIcon } from "@heroicons/react/24/outline";
@@ -49,7 +49,7 @@ export default function NavHeader() {
         aria-label="Global"
       >
         <div className=" justify-start logo ml-4">
-          <img src="/logo.svg" alt="Logo" className="h-8" />
+          <img src="https://www.freepnglogos.com/uploads/netflix-logo-0.png" alt="Logo" className="h-8" />
         </div>
 
         <nav className=" space-x-4 justify-end ml-5 nav-links">
@@ -150,12 +150,6 @@ export default function NavHeader() {
                       key={item.name}
                       className="group relative flex items-center gap-x-6 rounded-lg p-4 text-sm leading-6 hover:bg-gray-50"
                     >
-                      <div className="flex h-11 w-11 flex-none items-center justify-center rounded-lg bg-gray-50 group-hover:bg-white">
-                        <item.icon
-                          className="h-6 w-6 group-hover:text-indigo-600"
-                          aria-hidden="true"
-                        />
-                      </div>
                       <div className="flex-auto text-white">
                         <a href={item.href} className="block font-semibold">
                           {item.name}

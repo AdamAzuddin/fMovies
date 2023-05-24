@@ -16,6 +16,7 @@ const Thumbnail = ({ movie }: Props) => {
           alt="thumbnail image"
           className=" rounded-sm object-cover md:rounded"
           fill
+          sizes="h-28 min-w-[56px] md:h-32 md:min-w-[64px] lg:h-44 lg:min-w-[88px] "
         />
       </div>
       <p className="text-xs md:text-sm lg:text-2xl mt-4 mx-2">{movie.title || movie.name || movie.original_name}</p>

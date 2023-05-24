@@ -2,7 +2,6 @@ import "@styles/globals.css";
 import MovieBanner from "@components/MovieBanner";
 import Row from "@components/Row";
 import requests from "@utils/requests";
-import { Suspense } from "react";
 
 async function getData() {
   const [
@@ -52,9 +51,7 @@ const Home = async () => {
 
   return (
     <div className="container mx-auto py-6">
-      <Suspense fallback={<p>Loading banner...</p>}>
-        <MovieBanner netflixOriginals={netflixOriginals} />
-      </Suspense>
+      <MovieBanner netflixOriginals={netflixOriginals} />
 
       <section className="md:space-y-24">
         <Row title="Trending Now" movies={trendingNow} />
