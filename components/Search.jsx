@@ -80,12 +80,6 @@ export default function Search() {
         </button>
       </div>
       <div className="absolute top-12 overflow-y-auto max-h-40 !scrollbar-track-transparent !scrollbar-thumb-slate-700 !scrollbar-thin w-full">
-        {/* {suggestions.map((suggestion, index) => (
-          <div key={index} className="text-xs md:text-xl lg:text-2xl flex">
-            <img src="http://goo.gl/vyAs27" alt="image" />
-            <p>{suggestion}</p>
-          </div>
-        ))} */}
         <Suggestions jsonArray={suggestions}/>
       </div>
     </div>
