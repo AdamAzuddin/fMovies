@@ -1,3 +1,4 @@
+
 interface Props{
   params: {movieId: string}
 }
