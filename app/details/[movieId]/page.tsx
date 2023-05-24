@@ -1,8 +1,10 @@
-import React from 'react'
-
-const Details = () => {
+interface Props{
+  params: {movieId: string}
+}
+const Details = ({params}:Props) => {
+  const id=params.movieId
   return (
-    <div>Details</div>
+    <div>{id}</div>
   )
 }
 
