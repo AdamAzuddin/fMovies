@@ -11,7 +11,7 @@ const Thumbnail = ({ movie }: Props) => {
 
  
   return (
-    <div className="bg-black cursor-pointer h-[13rem] md:h-[15rem] lg:h-72" onClick={()=> router.push(`/details/${movie.id}`)}>
+    <div className="bg-black cursor-pointer h-[13rem] md:h-[15rem] lg:h-72" onClick={()=> router.push(`/details/${movie.title || movie.name || movie.original_name}`)}>
       <div className="relative h-28 min-w-[56px] transition duration-200 ease-out md:h-32 md:min-w-[64px] lg:h-44 lg:min-w-[88px]">
         <Image
           src={`https://image.tmdb.org/t/p/w500${
