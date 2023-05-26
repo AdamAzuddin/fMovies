@@ -6,6 +6,10 @@ export default function Search() {
   const [searchTerm, setSearchTerm] = useState("");
   const [suggestions, setSuggestions] = useState([]);
 
+  const handleResetSuggestion = () => {
+    setSuggestions([]);
+  };
+
 
   const handleInputChange = (event) => {
     const { value } = event.target;
@@ -61,7 +65,7 @@ export default function Search() {
         </button>
       </div>
       <div className="absolute top-12 overflow-y-auto max-h-40 !scrollbar-track-transparent !scrollbar-thumb-slate-700 !scrollbar-thin w-full">
-        <Suggestions jsonArray={suggestions}/>
+        <Suggestions jsonArray={suggestions} resetSuggestion={handleResetSuggestion}/>
       </div>
     </div>
   );
