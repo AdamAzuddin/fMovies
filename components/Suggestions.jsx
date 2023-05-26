@@ -6,10 +6,13 @@ function Suggestion({ jsonArray, resetSuggestion }) {
   return (
     <div className="bg-primary-background">
       {jsonArray.map((movie) => (
+        
         <div
           key={movie.id}
           className="text-xs md:text-xl lg:text-2xl flex my-2"
           onClick={() => {
+            console.log(movie)
+            //TODO: Check movie.media_type, if === tv,etc. Pass it as params in link
             resetSuggestion()
             router.push(
               `/details/${movie.title || movie.name || movie.original_name}`

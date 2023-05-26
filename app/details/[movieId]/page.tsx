@@ -36,6 +36,7 @@ function convertGenreIdToString(idArray: [number], genres: GenreType) {
 }
 
 const Details = async ({ params }: Props) => {
+  //TODO: Check params in link, whether it's a movie or tv show
   const id = params.movieId;
   let data = await getData(id);
   data = data.results[0];
@@ -60,6 +61,7 @@ const Details = async ({ params }: Props) => {
     console.log(genreIdArray);
     const movieGenres = genres.MOVIE;
     const seriesGenres = genres.TV_SHOW;
+    //TODO: If movie, change currentMovieGenres var value, vice versa
 
     currentMovieGenres = convertGenreIdToString(
       genreIdArray,
