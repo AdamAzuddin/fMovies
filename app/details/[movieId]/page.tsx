@@ -39,35 +39,72 @@ const Details = async ({ params }: Props) => {
   const id = params.movieId;
   let data = await getData(id);
   data = data.results[0];
-  const name = data.title || data.name || data.original_name;
-  const description = data.overview;
-  const posterPath = `https://image.tmdb.org/t/p/w500${
-    data.backdrop_path || data.poster_path
-  }`;
-  const vote_count = data.vote_count;
-  const vote_average = data.vote_average;
-  const release_date = data.release_date;
-  const genreIdArray = data.genre_ids;
-  console.log(genreIdArray);
-  const movieGenres = genres.MOVIE; // {action:12, Animation:28}
-  const seriesGenres = genres.TV_SHOW;
+  let name:string='';
+  let description:string='';
+  let posterPath:string='';
+  let vote_count:number=0;
+  let vote_average:number=0;
+  let release_date:string='';
+  let currentMovieGenres:string[]=[];
+  if (data) {
+    console.log(data);
+    name = data && (data.title || data.name || data.original_name);
+    description = data.overview;
+    posterPath = `https://image.tmdb.org/t/p/w500${
+      data.backdrop_path || data.poster_path
+    }`;
+    vote_count = data.vote_count;
+    vote_average = data.vote_average;
+    release_date = data.release_date;
+    const genreIdArray = data.genre_ids;
+    console.log(genreIdArray);
+    const movieGenres = genres.MOVIE;
+    const seriesGenres = genres.TV_SHOW;
 
-  const currentMovieGenres = convertGenreIdToString(genreIdArray, movieGenres);
-  const currentSeriesGenres = convertGenreIdToString(genreIdArray, movieGenres);
-
+    currentMovieGenres = convertGenreIdToString(
+      genreIdArray,
+      movieGenres
+    );
+    const currentSeriesGenres = convertGenreIdToString(
+      genreIdArray,
+      movieGenres
+    );
+  } 
   return (
-    <div className="mx-3">
-      <Image src={posterPath} alt="Poster Image" width={100} height={500} />
-      <div>
-        <h1 className="text-2xl  font-bold md:text-4xl lg:text-7xl">{name}</h1>
-        <p className="text-xs md:text-lg lg:text-2xl">{description}</p>
-        <p>Vote count: {vote_count}</p>
-        <p>Vote average: {vote_average}</p>
-        <p>Release date: {release_date}</p>
-        {currentMovieGenres.map((genre) => (
-          <p>{genre}</p>
-        ))}
-      </div>
+    <div className="mx-4 mt-4">
+      {data ? (
+        <div className="flex">
+          <img
+            src={posterPath}
+            alt="Poster image"
+            className="h-[150px] w-[220px] md:h-[160px] md:w-[320px] lg:h-[400px] lg:w-[800px]"
+          />
+          <div className="ml-5">
+            <div className="flex">
+              <h1
+                className="text-2xl  font-bold md:text-4xl lg:text-7xl"
+                style={{ marginTop: "0px" }}
+              >
+                {name}
+              </h1>
+              <p className="ml-auto">{release_date}</p>
+            </div>
+
+            <div className="flex space-x-7 text-xs md:text-sm lg:text-2xl">
+              {currentMovieGenres.map((genre) => (
+                <p>{genre}</p>
+              ))}
+
+              <p>{vote_average}</p>
+
+              <p>{vote_count} votes</p>
+            </div>
+            <h2 className="text-xl md:text-xl lg:text-2xl">{description}</h2>
+          </div>
+        </div>
+      ) : (
+        <div>No further information found</div>
+      )}
     </div>
   );
 };
