@@ -22,7 +22,6 @@ async function getData() {
     fetch(requests.fetchHorrorMovies).then((res) => res.json()),
     fetch(requests.fetchRomanceMovies).then((res) => res.json()),
     fetch(requests.fetchDocumentaries).then((res) => res.json()),
-    //TODO:Add fetch exciting series too
   ]);
 
   return {
