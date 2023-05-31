@@ -1,23 +1,6 @@
-"use client"
+"use client";
 import useDetails from "@hooks/useDetails";
 import genres from "@constants/genres.json";
-
-async function getData(name: string) {
-  const res = await fetch(
-    `https://api.themoviedb.org/3/search/movie?api_key=${process.env.NEXT_PUBLIC_API_KEY}&query=${name}`
-  );
-
-  if (!res.ok) {
-    // This will activate the closest `error.js` Error Boundary
-    throw new Error("Failed to fetch data");
-  }
-
-  return res.json();
-}
-
-interface Props {
-  params: { movieId: string };
-}
 
 interface GenreType {
   [key: string]: number;
@@ -36,49 +19,39 @@ function convertGenreIdToString(idArray: [number], genres: GenreType) {
   return results;
 }
 
-const Details = async ({ params }: Props) => {
-  //TODO: Check params in link, whether it's a movie or tv show
-  const jsonDataString = useDetails((state)=> state.jsonData)
-  const jsonData = JSON.parse(jsonDataString)
-  console.log(jsonData)
-  const id = params.movieId;
-  let data = await getData(id);
-  data = data.results[0];
-  let name:string='';
-  let description:string='';
-  let posterPath:string='';
-  let vote_count:number=0;
-  let vote_average:number=0;
-  let release_date:string='';
-  let currentMovieGenres:string[]=[];
-  if (data) {
-    console.log(data);
-    name = data && (data.title || data.name || data.original_name);
-    description = data.overview;
-    posterPath = `https://image.tmdb.org/t/p/w500${
-      data.backdrop_path || data.poster_path
-    }`;
-    vote_count = data.vote_count;
-    vote_average = data.vote_average;
-    release_date = data.release_date;
-    const genreIdArray = data.genre_ids;
-    console.log(genreIdArray);
-    const movieGenres = genres.MOVIE;
-    const seriesGenres = genres.TV_SHOW;
-    //TODO: If movie, change currentMovieGenres var value, vice versa
 
-    currentMovieGenres = convertGenreIdToString(
-      genreIdArray,
-      movieGenres
-    );
-    const currentSeriesGenres = convertGenreIdToString(
-      genreIdArray,
-      movieGenres
-    );
-  } 
+const Details = () => {
+  const jsonDataString: any = useDetails((state) => state.jsonData);
+  const jsonData = JSON.parse(jsonDataString);
+  console.log(jsonData);
+  const description = jsonData.overview;
+  const name = jsonData.title || jsonData.name || jsonData.original_name;
+  const posterPath = `https://image.tmdb.org/t/p/w500${
+    jsonData.backdrop_path || jsonData.poster_path
+  }`;
+  const vote_count: number = jsonData.vote_count;
+  const vote_average: number = jsonData.vote_average;
+  const release_date: string = jsonData.release_date;
+  let currentGenres: string[] = [];
+  const media_type: string = jsonData.media_type;
+
+  const genreIdArray = jsonData.genre_ids;
+  console.log(genreIdArray);
+  const movieGenres = genres.MOVIE;
+  const seriesGenres = genres.TV_SHOW;
+
+  if (media_type === "movie") {
+    
+  currentGenres = convertGenreIdToString(genreIdArray, movieGenres);
+  } else{
+    
+  currentGenres = convertGenreIdToString(genreIdArray, seriesGenres);
+
+  }
+
   return (
     <div className="mx-4 mt-4">
-      {data ? (
+      {jsonData ? (
         <div className="flex">
           <img
             src={posterPath}
@@ -97,7 +70,7 @@ const Details = async ({ params }: Props) => {
             </div>
 
             <div className="flex space-x-7 text-xs md:text-sm lg:text-2xl">
-              {currentMovieGenres.map((genre) => (
+              {currentGenres.map((genre:string) => (
                 <p>{genre}</p>
               ))}
 
