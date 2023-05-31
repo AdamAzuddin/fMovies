@@ -1,4 +1,5 @@
-import Image from "next/image";
+"use client"
+import useDetails from "@hooks/useDetails";
 import genres from "@constants/genres.json";
 
 async function getData(name: string) {
@@ -37,6 +38,9 @@ function convertGenreIdToString(idArray: [number], genres: GenreType) {
 
 const Details = async ({ params }: Props) => {
   //TODO: Check params in link, whether it's a movie or tv show
+  const jsonDataString = useDetails((state)=> state.jsonData)
+  const jsonData = JSON.parse(jsonDataString)
+  console.log(jsonData.title)
   const id = params.movieId;
   let data = await getData(id);
   data = data.results[0];
