@@ -14,7 +14,6 @@ export default function Search() {
   const handleInputChange = (event) => {
     const { value } = event.target;
     setSearchTerm(value);
-    //TODO: Investigate what tmdb api endpoint .getMulti actually use
     theMovieDb.search.getMulti(
       {
         query: value,

@@ -23,7 +23,6 @@ function Suggestion({ jsonArray, resetSuggestion }) {
             console.log(movie)
             const jsonString = JSON.stringify(movie)
             setJsonData(jsonString)
-            //TODO: Check movie.media_type, if === tv,etc. Pass it as params in link
             resetSuggestion()
             router.push(
               `/details/${movie.title || movie.name || movie.original_name}`
