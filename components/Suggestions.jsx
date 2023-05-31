@@ -1,8 +1,17 @@
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import useDetails from "@hooks/useDetails";
 
 function Suggestion({ jsonArray, resetSuggestion }) {
   const router = useRouter();
+  // access setJsonDara function from the useDetails Hook
+  const setJsonData = useDetails((state)=> state.setJsonData)
+
+  const handleClick = () => {
+    console.log(jsonString);
+    setJsonData(jsonString)
+    router.push(`/details/${movie.title || movie.name || movie.original_name}`);
+  };
   return (
     <div className="bg-primary-background">
       {jsonArray.map((movie) => (
@@ -12,6 +21,8 @@ function Suggestion({ jsonArray, resetSuggestion }) {
           className="text-xs md:text-xl lg:text-2xl flex my-2"
           onClick={() => {
             console.log(movie)
+            const jsonString = JSON.stringify(movie)
+            setJsonData(jsonString)
             //TODO: Check movie.media_type, if === tv,etc. Pass it as params in link
             resetSuggestion()
             router.push(

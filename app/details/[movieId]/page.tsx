@@ -40,7 +40,7 @@ const Details = async ({ params }: Props) => {
   //TODO: Check params in link, whether it's a movie or tv show
   const jsonDataString = useDetails((state)=> state.jsonData)
   const jsonData = JSON.parse(jsonDataString)
-  console.log(jsonData.title)
+  console.log(jsonData)
   const id = params.movieId;
   let data = await getData(id);
   data = data.results[0];

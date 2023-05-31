@@ -17,7 +17,6 @@ const Thumbnail = ({ movie }: Props) => {
   const setJsonData = useDetails((state)=> state.setJsonData)
   
   const handleClick = () => {
-    console.log(jsonString);
     setJsonData(jsonString)
     router.push(`/details/${movie.title || movie.name || movie.original_name}`);
   };
