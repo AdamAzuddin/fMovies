@@ -34,7 +34,7 @@ async function getData() {
   };
 }
 
-const MoviesPage = async() => {
+const SeriesPage = async() => {
     const data = await getData();
     const trendingNow = data.props.trendingNow;
     const topRated = data.props.topRated;
@@ -60,4 +60,4 @@ const MoviesPage = async() => {
     );
 }
 
-export default MoviesPage
+export default SeriesPage
