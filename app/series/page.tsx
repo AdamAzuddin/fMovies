@@ -1,6 +1,7 @@
 import "@styles/globals.css";
 import Row from "@components/Row";
 import requests from "@utils/requests";
+import series from "@utils/requests/series"
 
 async function getData() {
   const [
@@ -43,13 +44,15 @@ const SeriesPage = async() => {
     const horrorMovies = data.props.horrorMovies;
     const romanceMovies = data.props.romanceMovies;
     const documentaries = data.props.documentaries;
+
+    const seriesData = await series.fetchTopRatedSeriesData()
   
     return (
       <div className="container mx-auto py-6">
   
         <section className="md:space-y-24">
           <Row title="Trending Now" movies={trendingNow} />
-          <Row title="Top Rated" movies={topRated} />
+          <Row title="Top Rated" movies={seriesData.results} />
           <Row title="Action Thrillers" movies={actionMovies} />
           <Row title="Comedies" movies={comedyMovies} />
           <Row title="Horror" movies={horrorMovies} />
