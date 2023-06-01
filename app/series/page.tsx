@@ -1,6 +1,7 @@
 import "@styles/globals.css";
 import Row from "@components/Row";
 import requests from "@utils/requests";
+import series from "@utils/requests/series";
 
 async function getData() {
   const [
@@ -43,6 +44,9 @@ const SeriesPage = async() => {
     const horrorMovies = data.props.horrorMovies;
     const romanceMovies = data.props.romanceMovies;
     const documentaries = data.props.documentaries;
+
+    const seriesData = await series.fetchTopRatedSeriesData()
+    console.log(seriesData.results)
   
     return (
       <div className="container mx-auto py-6">
