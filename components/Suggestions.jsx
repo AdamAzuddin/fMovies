@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import useDetails from "@hooks/useDetails";
-
+//TODO: 3
 function Suggestion({ jsonArray, resetSuggestion }) {
   const router = useRouter();
   // access setJsonDara function from the useDetails Hook

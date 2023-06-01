@@ -1,7 +1,7 @@
 import { useState } from "react";
 import Suggestions from "@components/Suggestions" 
 import theMovieDb from "@lib/themoviedb";
-
+//TODO: 2
 export default function Search() {
   const [searchTerm, setSearchTerm] = useState("");
   const [suggestions, setSuggestions] = useState([]);
