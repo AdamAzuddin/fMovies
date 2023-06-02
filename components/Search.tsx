@@ -1,7 +1,8 @@
 import { useState } from "react";
 import Suggestions from "@components/Suggestions" 
 import theMovieDb from "@lib/themoviedb";
-//TODO: 2
+import { ChangeEvent } from "react";
+
 export default function Search() {
   const [searchTerm, setSearchTerm] = useState("");
   const [suggestions, setSuggestions] = useState([]);
@@ -11,7 +12,7 @@ export default function Search() {
   };
 
 
-  const handleInputChange = (event) => {
+  const handleInputChange = (event: ChangeEvent<HTMLInputElement>) => {
     const { value } = event.target;
     setSearchTerm(value);
     theMovieDb.search.getMulti(
@@ -26,13 +27,14 @@ export default function Search() {
     
   };
 
-  function successCB(data) {
+  function successCB(data:string) {
+    console.log(data)
     const searchArray=JSON.parse(data).results
     console.log(searchArray);
     setSuggestions(searchArray)
   };
           
-  function errorCB(data) {
+  function errorCB(data: String) {
             console.log("Error callback: " + data);
       };
 
