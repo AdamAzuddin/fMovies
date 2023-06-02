@@ -1,17 +1,39 @@
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import useDetails from "@hooks/useDetails";
-//TODO: 3
-function Suggestion({ jsonArray, resetSuggestion }) {
+
+interface SearchResult {
+  adult: boolean;
+  backdrop_path: string;
+  id: number;
+  name: string;
+  original_language: string;
+  original_name: string;
+  overview: string;
+  poster_path: string;
+  media_type: string;
+  genre_ids: number[];
+  popularity: number;
+  first_air_date?: string;
+  vote_average: number;
+  vote_count: number;
+  origin_country?: string[];
+  title?: string;
+  release_date?: string;
+  video?: boolean;
+}
+
+interface SuggestionProps {
+  jsonArray: SearchResult[];
+  resetSuggestion: () => void;
+}
+
+
+function Suggestion({ jsonArray, resetSuggestion }: SuggestionProps) {
   const router = useRouter();
   // access setJsonDara function from the useDetails Hook
   const setJsonData = useDetails((state)=> state.setJsonData)
 
-  const handleClick = () => {
-    console.log(jsonString);
-    setJsonData(jsonString)
-    router.push(`/details/${movie.title || movie.name || movie.original_name}`);
-  };
   return (
     <div className="bg-primary-background">
       {jsonArray.map((movie) => (
