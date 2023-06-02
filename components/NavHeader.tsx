@@ -10,7 +10,10 @@ import { ChevronDownIcon } from "@heroicons/react/20/solid";
 import { signIn, useSession, getProviders } from "next-auth/react";
 import ListDropdownMenu from "@components/ListDropdownMenu";
 import Search from "@components/Search";
-//TODO:1
+import { ClientSafeProvider } from "next-auth/react";
+import { BuiltInProviderType } from "next-auth/providers";
+import { LiteralUnion } from "next-auth/react";
+
 const products = [
   {
     name: "Watch Later",
@@ -26,14 +29,14 @@ const products = [
   },
 ];
 
-function classNames(...classes) {
+function classNames(...classes:string[]) {
   return classes.filter(Boolean).join(" ");
 }
 
 export default function NavHeader() {
-  const { data: session } = useSession();
+  const { data: session} = useSession();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [providers, setProviders] = useState(null);
+  const [providers, setProviders] = useState<Record<LiteralUnion<BuiltInProviderType, string>, ClientSafeProvider> | null>(null);
 
   useEffect(() => {
     (async () => {
@@ -91,7 +94,7 @@ export default function NavHeader() {
                 <a href="/my-profile">
                   <div className="rounded-full w-9 h-9 overflow-hidden">
                     <img
-                      src={session?.user.image}
+                      src={session?.user.image ?? 'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png'}
                       alt="Profile Picture"
                       className="w-full h-full object-cover"
                     />
