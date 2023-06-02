@@ -3,12 +3,12 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import useDetails from "@hooks/useDetails";
 //TODO: Rename interface to ThumbnailProps
-interface Props {
+interface ThumbnailProps {
   movie: Movie;
 }
 
 
-const Thumbnail = ({ movie }: Props) => {
+const Thumbnail = ({ movie }: ThumbnailProps) => {
   const router = useRouter();
 
   const jsonData = movie;

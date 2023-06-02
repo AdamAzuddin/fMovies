@@ -4,13 +4,13 @@ import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/outline";
 import Thumbnail from "@components/Thumbnail";
 import "@styles/globals.css";
 import { useRef, useState } from "react";
-//TODO: Rename interface to RowProps
-interface Props {
+
+interface RowProps {
   title: String;
   movies: Movie[];
 }
 
-const Row = ({ title, movies }: Props) => {
+const Row = ({ title, movies }: RowProps) => {
   const rowRef = useRef<HTMLDivElement>(null);
   const [isMoved, setIsMoved] = useState(false);
 

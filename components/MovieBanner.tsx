@@ -3,12 +3,12 @@ import { useEffect, useState } from 'react';
 import { Movie } from '../typings'
 import Image from 'next/image';
 import { baseUrl } from '@constants/movie';
-//TODO: Rename inteface to BannerProps
-interface Props {
+
+interface BannerProps {
   netflixOriginals: Movie[]
 }
 
-const MovieBanner = ({ netflixOriginals}:Props) => {
+const MovieBanner = ({ netflixOriginals}:BannerProps) => {
   const [movie, setMovie] = useState<Movie | null>(null)
 
   useEffect(() => {
