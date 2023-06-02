@@ -31,3 +31,5 @@ export interface Genre {
       | 'Trailer'
       | 'Teaser'
   }
+
+//TODO: Export all interfaces

@@ -4,7 +4,7 @@ import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/outline";
 import Thumbnail from "@components/Thumbnail";
 import "@styles/globals.css";
 import { useRef, useState } from "react";
-
+//TODO: Rename interface to RowProps
 interface Props {
   title: String;
   movies: Movie[];

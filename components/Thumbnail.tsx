@@ -2,7 +2,7 @@ import { Movie } from "@typings";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import useDetails from "@hooks/useDetails";
-
+//TODO: Rename interface to ThumbnailProps
 interface Props {
   movie: Movie;
 }

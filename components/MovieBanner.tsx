@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { Movie } from '../typings'
 import Image from 'next/image';
 import { baseUrl } from '@constants/movie';
-
+//TODO: Rename inteface to BannerProps
 interface Props {
   netflixOriginals: Movie[]
 }
