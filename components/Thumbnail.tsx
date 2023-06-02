@@ -3,9 +3,6 @@ import { useRouter } from "next/navigation";
 import useDetails from "@hooks/useDetails";
 import { ThumbnailProps } from "@typings";
 
-//TODO: Add watch later, favourites and watched button
-//TODO: Create a new file in /utils/functions/[functionName] that hold function of watch later, favourites and watched button
-
 const Thumbnail = ({ movie }: ThumbnailProps) => {
   const router = useRouter();
 
