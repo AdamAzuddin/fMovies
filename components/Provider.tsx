@@ -1,12 +1,6 @@
 "use client"
 import { SessionProvider } from "next-auth/react"
-import { Session } from "next-auth"
-import { ReactNode } from "react"
-
-interface ProviderProps {
-  children: ReactNode,
-  session: Session | undefined
-}
+import { ProviderProps } from "@typings"
 
 const Provider = ({children, session}: ProviderProps) => {
   return (

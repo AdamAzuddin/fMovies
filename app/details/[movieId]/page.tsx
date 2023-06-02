@@ -1,10 +1,8 @@
 "use client";
 import useDetails from "@hooks/useDetails";
 import genres from "@constants/genres.json";
+import { GenreType } from "@typings";
 
-interface GenreType {
-  [key: string]: number;
-}
 
 function convertGenreIdToString(idArray: [number], genres: GenreType) {
   let results = [];

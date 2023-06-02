@@ -3,10 +3,7 @@ import { useEffect, useState } from 'react';
 import { Movie } from '../typings'
 import Image from 'next/image';
 import { baseUrl } from '@constants/movie';
-
-interface BannerProps {
-  netflixOriginals: Movie[]
-}
+import { BannerProps } from '../typings';
 
 const MovieBanner = ({ netflixOriginals}:BannerProps) => {
   const [movie, setMovie] = useState<Movie | null>(null)

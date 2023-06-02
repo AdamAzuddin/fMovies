@@ -1,12 +1,7 @@
-import { Movie } from "@typings";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import useDetails from "@hooks/useDetails";
-
-interface ThumbnailProps {
-  movie: Movie;
-}
-
+import { ThumbnailProps } from "@typings";
 
 const Thumbnail = ({ movie }: ThumbnailProps) => {
   const router = useRouter();

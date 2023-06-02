@@ -1,9 +1,6 @@
 import {create} from 'zustand'
+import { DetailsState } from '@typings'
 
-interface DetailsState {
-  jsonData: string | null,
-  setJsonData: (data:string)=> void
-}
 const useDetails = create<DetailsState>((set) => ({
     jsonData: null,
     setJsonData: (data) => set(() => ({ jsonData: data })),

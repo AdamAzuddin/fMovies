@@ -4,11 +4,7 @@ import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/outline";
 import Thumbnail from "@components/Thumbnail";
 import "@styles/globals.css";
 import { useRef, useState } from "react";
-
-interface RowProps {
-  title: String;
-  movies: Movie[];
-}
+import { RowProps } from "react-bootstrap";
 
 const Row = ({ title, movies }: RowProps) => {
   const rowRef = useRef<HTMLDivElement>(null);
@@ -45,7 +41,7 @@ const Row = ({ title, movies }: RowProps) => {
           ref={rowRef}
           className="flex items-center space-x-2 overflow-x-scroll md:space-x-4 lg:space-x-8 scrollbar-hide"
         >
-          {movies?.map((movie) => (
+          {movies?.map((movie:Movie) => (
             <Thumbnail key={movie.id} movie={movie} />
           ))}
         </div>
