@@ -22,6 +22,7 @@ const handler = NextAuth({
   
   async signIn({ profile }) {
     try {
+      //TODO: Connect to db and make sure user data is present in database
         await connectToDB()
         //check if user already exist
         const userExist = await User.findOne({
