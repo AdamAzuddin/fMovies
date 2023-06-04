@@ -3,15 +3,15 @@ import mongoose from "mongoose";
 let isConnected = false;
 
 export const connectToDB = async () => {
+  mongoose.set("strictQuery", true);
   if (isConnected) {
-    mongoose.set("strictQuery", true);
+    console.log('MongoDB is already connected')
     return;
   }
 
   try {
     await mongoose.connect(process.env.MONGODB_URI, {
         dbName: "fMoviesDB",
-        useNewUrkParser: true,
         useUnifiedTopology:true,
     })
 
