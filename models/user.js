@@ -16,7 +16,8 @@ const UserSchema = new Schema({
   },
   image: {
     type: String
-  }
+  },
+  //TODO: Add to watch later, favourites and watched lists as array of strings
 });
 
 const  User = models.User || model("User", UserSchema)
