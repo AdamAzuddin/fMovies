@@ -3,7 +3,7 @@ import { Schema, model, models } from "mongoose";
 const UserSchema = new Schema({
   email: {
     type: String,
-    unique: [true, "Email already exist!"],
+    unique: [true, "Email already exists!"],
     required: [true, "Email is required!"],
   },
   username: {
@@ -11,14 +11,59 @@ const UserSchema = new Schema({
     required: [true, "Username is required!"],
     match: [
       /^(?=.{8,20}$)(?![_.])(?!.*[_.]{2})[a-zA-Z0-9._]+(?<![_.])$/,
-      "Username invalid, it should contain 8-20 alphanumeric letters and be unique!",
+      "Username is invalid. It should contain 8-20 alphanumeric letters and be unique!",
     ],
   },
   image: {
-    type: String
+    type: String,
   },
-  //TODO: Add to watch later, favourites and watched lists as array of strings
+  watchLater: {
+    type: String,
+    set: function (data) {
+      // Convert JSON data to string before saving
+      return JSON.stringify(data);
+    },
+    get: function (data) {
+      // Parse the string and convert it back to JSON when retrieving
+      try {
+        return JSON.parse(data);
+      } catch (error) {
+        return data;
+      }
+    },
+  },
+  favourites: {
+    type: String,
+    set: function (data) {
+      // Convert JSON data to string before saving
+      return JSON.stringify(data);
+    },
+    get: function (data) {
+      // Parse the string and convert it back to JSON when retrieving
+      try {
+        return JSON.parse(data);
+      } catch (error) {
+        return data;
+      }
+    },
+  },
+  watched: {
+    type: String,
+    set: function (data) {
+      // Convert JSON data to string before saving
+      return JSON.stringify(data);
+    },
+    get: function (data) {
+      // Parse the string and convert it back to JSON when retrieving
+      try {
+        return JSON.parse(data);
+      } catch (error) {
+        return data;
+      }
+    },
+  },
 });
+
 
 const  User = models.User || model("User", UserSchema)
 
