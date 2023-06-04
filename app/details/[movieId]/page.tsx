@@ -6,17 +6,20 @@ import { HeartIcon } from "@heroicons/react/20/solid";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheckCircle } from "@fortawesome/free-solid-svg-icons";
 import { GenreType } from "@typings";
+import { connectToDB } from "@utils/database";
+import { useSession, getProviders, ClientSafeProvider, LiteralUnion   } from "next-auth/react";
+import { useState, useEffect } from "react";
+import { BuiltInProviderType } from "next-auth/providers";
+import User from "@models/user";
 
-function onClickWatchLater (){
-  console.log('Added to watch later list')
+function onClickWatchLater() {
+  console.log("Added to watch later list");
 }
-function onClickFavourites (){
-  console.log('Added to favourites list')
-  
+function onClickFavourites() {
+  console.log("Added to favourites list");
 }
-function onClickViewed (){
-  
-  console.log('Added to viewed list')
+function onClickViewed() {
+  console.log("Added to viewed list");
 }
 
 function convertGenreIdToString(idArray: [number], genres: GenreType) {
@@ -32,10 +35,21 @@ function convertGenreIdToString(idArray: [number], genres: GenreType) {
   return results;
 }
 
+const Details = async () => {
+  const { data: session } = useSession();
+  const [providers, setProviders] = useState<Record<LiteralUnion<BuiltInProviderType, string>, ClientSafeProvider> | null>(null);
 
-const Details = () => {
-  const jsonDataString: any = useDetails((state) => state.jsonData);
-  const jsonData = JSON.parse(jsonDataString);
+
+  useEffect(() => {
+    (async () => {
+      const res = await getProviders();
+      setProviders(res);
+    })();
+  }, []);
+
+  const jsonDataString = useDetails((state) => state.jsonData);
+  const jsonData = JSON.parse(jsonDataString || "");
+  await connectToDB();
   console.log(jsonData);
   const description = jsonData.overview;
   const name = jsonData.title || jsonData.name || jsonData.original_name;
@@ -54,12 +68,9 @@ const Details = () => {
   const seriesGenres = genres.TV_SHOW;
 
   if (media_type === "movie") {
-    
-  currentGenres = convertGenreIdToString(genreIdArray, movieGenres);
-  } else{
-    
-  currentGenres = convertGenreIdToString(genreIdArray, seriesGenres);
-
+    currentGenres = convertGenreIdToString(genreIdArray, movieGenres);
+  } else {
+    currentGenres = convertGenreIdToString(genreIdArray, seriesGenres);
   }
 
   return (
@@ -90,26 +101,43 @@ const Details = () => {
               <p>{vote_average}</p>
 
               <p>{vote_count} votes</p>
-              <div className="group flex flex-col">
-                <ClockIcon className="h-5 w-5 md:h-6 md:w-6 lg:h-7 lg:w-7" onClick={onClickWatchLater}/>
-                <span className="ml-1 text-gray-400 opacity-0 group-hover:opacity-100 w-4">
-                  Watch Later
-                </span>
-              </div>
-              <div className="group flex flex-col">
-                <HeartIcon className="h-5 w-5 md:h-6 md:w-6 lg:h-7 lg:w-7" onClick={onClickFavourites}/>
-              
-                <span className="ml-1 text-gray-400 opacity-0 group-hover:opacity-100 w-4">
-                  Favourites
-                </span>
-              </div>
-              <div className="group flex flex-col">
-                <FontAwesomeIcon icon={faCheckCircle} className="h-5 w-5 md:h-6 md:w-6 lg:h-7 lg:w-7" onClick={onClickViewed}/>
-            
-                <span className="ml-1 text-gray-400 opacity-0 group-hover:opacity-100 w-4">
-                  Watched
-                </span>
-              </div></div>
+              {session?.user ? (
+                <>
+                  <div className="group flex flex-col">
+                    <ClockIcon
+                      className="h-5 w-5 md:h-6 md:w-6 lg:h-7 lg:w-7"
+                      onClick={onClickWatchLater}
+                    />
+                    <span className="ml-1 text-gray-400 opacity-0 group-hover:opacity-100 w-4">
+                      Watch Later
+                    </span>
+                  </div>
+                  <div className="group flex flex-col">
+                    <HeartIcon
+                      className="h-5 w-5 md:h-6 md:w-6 lg:h-7 lg:w-7"
+                      onClick={onClickFavourites}
+                    />
+
+                    <span className="ml-1 text-gray-400 opacity-0 group-hover:opacity-100 w-4">
+                      Favourites
+                    </span>
+                  </div>
+                  <div className="group flex flex-col">
+                    <FontAwesomeIcon
+                      icon={faCheckCircle}
+                      className="h-5 w-5 md:h-6 md:w-6 lg:h-7 lg:w-7"
+                      onClick={onClickViewed}
+                    />
+
+                    <span className="ml-1 text-gray-400 opacity-0 group-hover:opacity-100 w-4">
+                      Watched
+                    </span>
+                  </div>
+                </>
+              ) : (
+                <></>
+              )}
+            </div>
             <h2 className="text-xl md:text-xl lg:text-2xl">{description}</h2>
           </div>
         </div>
@@ -119,6 +147,5 @@ const Details = () => {
     </div>
   );
 };
-
 
 export default Details;
