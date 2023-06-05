@@ -83,16 +83,45 @@ const Details = async () => {
       if (res.ok) {
         console.log("Added to watch later list");
       }
-
     } catch (error) {
       console.log(error);
     }
   }
-  function onClickFavourites() {
-    console.log("Added to favourites list");
+
+  async function onClickFavourites() {
+    try {
+      const res = await fetch("/api/lists/new-favourites", {
+        method: "POST",
+        body: JSON.stringify({
+          movie: jsonData,
+          email: session?.user?.email,
+        }),
+      });
+
+      if (res.ok) {
+        console.log("Added to favourites list");
+      }
+    } catch (error) {
+      console.log(error);
+    }
   }
-  function onClickViewed() {
-    console.log("Added to viewed list");
+
+  async function onClickViewed() {
+    try {
+      const res = await fetch("/api/lists/new-watched", {
+        method: "POST",
+        body: JSON.stringify({
+          movie: jsonData,
+          email: session?.user?.email,
+        }),
+      });
+
+      if (res.ok) {
+        console.log("Added to watched list");
+      }
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   return (
