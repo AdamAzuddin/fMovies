@@ -7,20 +7,15 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheckCircle } from "@fortawesome/free-solid-svg-icons";
 import { GenreType } from "@typings";
 import { connectToDB } from "@utils/database";
-import { useSession, getProviders, ClientSafeProvider, LiteralUnion   } from "next-auth/react";
+import {
+  useSession,
+  getProviders,
+  ClientSafeProvider,
+  LiteralUnion,
+} from "next-auth/react";
 import { useState, useEffect } from "react";
 import { BuiltInProviderType } from "next-auth/providers";
 import User from "@models/user";
-
-function onClickWatchLater() {
-  console.log("Added to watch later list");
-}
-function onClickFavourites() {
-  console.log("Added to favourites list");
-}
-function onClickViewed() {
-  console.log("Added to viewed list");
-}
 
 function convertGenreIdToString(idArray: [number], genres: GenreType) {
   let results = [];
@@ -37,8 +32,10 @@ function convertGenreIdToString(idArray: [number], genres: GenreType) {
 
 const Details = async () => {
   const { data: session } = useSession();
-  const [providers, setProviders] = useState<Record<LiteralUnion<BuiltInProviderType, string>, ClientSafeProvider> | null>(null);
-
+  const [providers, setProviders] = useState<Record<
+    LiteralUnion<BuiltInProviderType, string>,
+    ClientSafeProvider
+  > | null>(null);
 
   useEffect(() => {
     (async () => {
@@ -71,6 +68,31 @@ const Details = async () => {
     currentGenres = convertGenreIdToString(genreIdArray, movieGenres);
   } else {
     currentGenres = convertGenreIdToString(genreIdArray, seriesGenres);
+  }
+
+  async function onClickWatchLater() {
+    try {
+      const res = await fetch("/api/lists/new-watch-later", {
+        method: "POST",
+        body: JSON.stringify({
+          movie: jsonData,
+          email: session?.user?.email,
+        }),
+      });
+
+      if (res.ok) {
+        console.log("Added to watch later list");
+      }
+
+    } catch (error) {
+      console.log(error);
+    }
+  }
+  function onClickFavourites() {
+    console.log("Added to favourites list");
+  }
+  function onClickViewed() {
+    console.log("Added to viewed list");
   }
 
   return (
