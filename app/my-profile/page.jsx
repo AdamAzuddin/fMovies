@@ -1,5 +1,5 @@
 "use client";
-import { signOut, useSession, getProviders } from "next-auth/react";
+import { signOut, useSession, getProviders, signIn } from "next-auth/react";
 import { useState, useEffect } from "react";
 
 const MyProfilePage = () => {
@@ -47,7 +47,19 @@ const MyProfilePage = () => {
           </div>
         </>
       ) : (
-        <>{providers && <h1>Please Sign In</h1>}</>
+        <>
+          {providers &&
+            Object.values(providers).map((provider) => (
+              <button
+                type="button"
+                className="bg-blue-500 hover:bg-blue-700 text-white py-1 px-3 rounded-full mr-4 text-[1rem] md:text-[1.2rem]"
+                key={provider.name}
+                onClick={() => signIn(provider.id)}
+              >
+                Sign in
+              </button>
+            ))}
+        </>
       )}
     </div>
   );

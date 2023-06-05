@@ -13,6 +13,7 @@ import Search from "@components/Search";
 import { ClientSafeProvider } from "next-auth/react";
 import { BuiltInProviderType } from "next-auth/providers";
 import { LiteralUnion } from "next-auth/react";
+import Link from "next/link";
 
 const products = [
   {
@@ -103,17 +104,8 @@ export default function NavHeader() {
               </>
             ) : (
               <>
-                {providers &&
-                  Object.values(providers).map((provider) => (
-                    <button
-                      type="button"
-                      className="bg-blue-500 hover:bg-blue-700 text-white py-1 px-3 rounded-full mr-4 text-[1rem] md:text-[1.2rem]"
-                      key={provider.name}
-                      onClick={() => signIn(provider.id)}
-                    >
-                      Sign in
-                    </button>
-                  ))}
+              <Link href="/my-profile">Sign In</Link>
+              
               </>
             )}
           </div>
