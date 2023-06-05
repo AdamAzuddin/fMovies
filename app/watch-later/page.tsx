@@ -10,6 +10,7 @@ import { BuiltInProviderType } from "next-auth/providers";
 import { useState, useEffect } from "react";
 
 const WatchLaterPage = async () => {
+  //TODO: Fetch data from api and pass an array of strings as props to List
   const { data: session } = useSession();
   const [providers, setProviders] = useState<Record<
     LiteralUnion<BuiltInProviderType, string>,
