@@ -1,7 +1,37 @@
-const FavouritesPage = () => {
-  return (
-    <div>Favourites Page</div>
-  )
-}
+"use client";
 
-export default FavouritesPage
+import {
+  useSession,
+  getProviders,
+  ClientSafeProvider,
+  LiteralUnion,
+} from "next-auth/react";
+import { BuiltInProviderType } from "next-auth/providers";
+import { useState, useEffect } from "react";
+
+const FavouritesPage = async () => {
+  const { data: session } = useSession();
+  const [providers, setProviders] = useState<Record<
+    LiteralUnion<BuiltInProviderType, string>,
+    ClientSafeProvider
+  > | null>(null);
+
+  useEffect(() => {
+    (async () => {
+      const res = await getProviders();
+      setProviders(res);
+    })();
+  }, []);
+  return (
+    <div>
+      {session?.user ? 
+        <></> 
+        : 
+        <div>
+          Sign in to view your favourites list
+        </div>}
+    </div>
+  )
+};
+
+export default FavouritesPage;

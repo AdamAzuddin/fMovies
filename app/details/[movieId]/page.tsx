@@ -15,7 +15,6 @@ import {
 } from "next-auth/react";
 import { useState, useEffect } from "react";
 import { BuiltInProviderType } from "next-auth/providers";
-import User from "@models/user";
 
 function convertGenreIdToString(idArray: [number], genres: GenreType) {
   let results = [];
