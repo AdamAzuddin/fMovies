@@ -16,7 +16,7 @@ import {
 import { useState, useEffect } from "react";
 import { BuiltInProviderType } from "next-auth/providers";
 
-function convertGenreIdToString(idArray: [number], genres: GenreType) {
+function convertGenreIdToString(idArray, genres) {
   let results = [];
   for (let index = 0; index < idArray.length; index++) {
     const currentId = idArray[index];
@@ -31,10 +31,7 @@ function convertGenreIdToString(idArray: [number], genres: GenreType) {
 
 const Details = async () => {
   const { data: session } = useSession();
-  const [providers, setProviders] = useState<Record<
-    LiteralUnion<BuiltInProviderType, string>,
-    ClientSafeProvider
-  > | null>(null);
+  const [providers, setProviders] = useState(null);
 
   useEffect(() => {
     (async () => {
@@ -52,11 +49,11 @@ const Details = async () => {
   const posterPath = `https://image.tmdb.org/t/p/w500${
     jsonData.backdrop_path || jsonData.poster_path
   }`;
-  const vote_count: number = jsonData.vote_count;
-  const vote_average: number = jsonData.vote_average;
-  const release_date: string = jsonData.release_date;
-  let currentGenres: string[] = [];
-  const media_type: string = jsonData.media_type;
+  const vote_count = jsonData.vote_count;
+  const vote_average = jsonData.vote_average;
+  const release_date = jsonData.release_date;
+  let currentGenres = [];
+  const media_type= jsonData.media_type;
 
   const genreIdArray = jsonData.genre_ids;
   console.log(genreIdArray);
@@ -74,8 +71,8 @@ const Details = async () => {
       const res = await fetch("/api/lists/new-watch-later", {
         method: "POST",
         body: JSON.stringify({
+          userId: session?.user?.id,
           movie: jsonData,
-          email: session?.user?.email,
         }),
       });
 
@@ -144,7 +141,7 @@ const Details = async () => {
             </div>
 
             <div className="flex space-x-7 text-xs md:text-sm lg:text-2xl">
-              {currentGenres.map((genre: string) => (
+              {currentGenres.map((genre) => (
                 <p>{genre}</p>
               ))}
 

@@ -1,20 +1,16 @@
 import { connectToDB } from "@utils/database"
-import User from "@models/user"
+import WatchLater from "@models/watchLater";
 
 export const POST = async (req) => {
-    const {email, movie} = await req.json()
+    const {userId, movie} = await req.json()
 
     try {
         await connectToDB()
 
-        const newWatchList = await User.findOneAndUpdate(
-            {email: email},
-            { $push: {watchLater: movie}},
-            {new: true}
-        )
-        console.log("Added", newWatchList)
+        const data = new WatchLater({creator: userId, movie})
+        console.log("Added", data)
 
-        return new Response(JSON.stringify(newWatchList), {status: 201})
+        return new Response(JSON.stringify(data), {status: 201})
     } catch (error) {
         return new Response(`Failed to add to watch list: ${error}`, {status: 500})
     }
