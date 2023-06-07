@@ -5,16 +5,12 @@ import { ClockIcon } from "@heroicons/react/24/outline";
 import { HeartIcon } from "@heroicons/react/20/solid";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheckCircle } from "@fortawesome/free-solid-svg-icons";
-import { GenreType } from "@typings";
 import { connectToDB } from "@utils/database";
 import {
   useSession,
   getProviders,
-  ClientSafeProvider,
-  LiteralUnion,
 } from "next-auth/react";
 import { useState, useEffect } from "react";
-import { BuiltInProviderType } from "next-auth/providers";
 
 function convertGenreIdToString(idArray, genres) {
   let results = [];
