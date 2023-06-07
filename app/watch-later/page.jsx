@@ -1,20 +1,14 @@
 "use client";
 
-import {
-  useSession,
-  getProviders,
-} from "next-auth/react";
+import { useSession, getProviders } from "next-auth/react";
 import { useState, useEffect } from "react";
 import Thumbnail from "@components/Thumbnail";
 
 const WatchLaterPage = async () => {
-  //TODO: Fetch data from api and pass an array of strings as props to List
+  
   const { data: session } = useSession();
   const [providers, setProviders] = useState(null);
   const [list, setList] = useState([]);
-  
-  let jsonArray = [];
-
 
   useEffect(() => {
     (async () => {
@@ -25,31 +19,44 @@ const WatchLaterPage = async () => {
 
   useEffect(() => {
     const fetchPosts = async () => {
-      const response = await fetch(`/api/users/${session?.user.id}/watch-later`);
-      const data = await response.json();
+      const response = await fetch(
+        `/api/users/${session?.user.id}/watch-later`
+      );
+      const res = await response.json();
 
-      setList(data);
-      console.log(data)
+      const jsonArray = [];
+      for (let index = 0; index < res.length; index++) {
+        const element = res[index];
+        const dataElement = JSON.parse(element.data);
+        jsonArray.push(dataElement);
+      }
+
+      setList(jsonArray);
+      console.log(jsonArray);
     };
 
-    if (session?.user.id) fetchPosts();
-
+    if (session?.user.id) {
+      fetchPosts();
+    }
   }, [session?.user.id]);
-  
+
   return (
     <div>
-      {session?.user ? 
+      {session?.user ? (
         <>
-         <div>
-          {list}
-         </div>
-        </> 
-        : 
-        <div>
-          Sign in to view your watch later list
-        </div>}
+          <div className="flex space-x-4">
+            {list.map((item, index) => (
+              <div key={index}>
+                <Thumbnail movie={item}/>
+              </div>
+            ))}
+          </div>
+        </>
+      ) : (
+        <div>Sign in to view your watch later list</div>
+      )}
     </div>
-  )
+  );
 };
 
 export default WatchLaterPage;
