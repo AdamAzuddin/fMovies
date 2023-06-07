@@ -42,6 +42,7 @@ const WatchLaterPage = async () => {
 
   return (
     <div>
+      <h1>Watch Later</h1>
       {session?.user ? (
         <>
           <div className="flex space-x-4">
