@@ -1,5 +1,5 @@
 import { connectToDB } from "@utils/database";
-import Favourite from "@models/favourite"
+import Favourite from "../../../../../models/favourite";
 
 export const GET = async ( req, { params }) => {
     console.log(params.id)

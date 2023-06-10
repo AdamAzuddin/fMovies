@@ -85,8 +85,8 @@ const Details = async () => {
       const res = await fetch("/api/lists/new-favourites", {
         method: "POST",
         body: JSON.stringify({
+          userId: session?.user?.id,
           movie: jsonData,
-          email: session?.user?.email,
         }),
       });
 
@@ -103,8 +103,8 @@ const Details = async () => {
       const res = await fetch("/api/lists/new-watched", {
         method: "POST",
         body: JSON.stringify({
+          userId: session?.user?.id,
           movie: jsonData,
-          email: session?.user?.email,
         }),
       });
 

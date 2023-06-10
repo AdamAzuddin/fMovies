@@ -1,10 +1,9 @@
 import { connectToDB } from "@utils/database";
-import Favourite from "@models/favourite";
+import Favourite from "../../../../models/favourite";
 
 export const POST = async (req) => {
   const { userId, movie } = await req.json();
   const movieString = JSON.stringify(movie);
-
   try {
     await connectToDB();
 

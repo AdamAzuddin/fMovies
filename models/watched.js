@@ -11,6 +11,6 @@ const WatchedSchema = new Schema({
   },
 });
 
-const Watched = models.Watched || model('Watced', WatchedSchema);
+const Watched = models.Watched || model('Watched', WatchedSchema);
 
 export default Watched;
