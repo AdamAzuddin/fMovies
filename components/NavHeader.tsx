@@ -25,8 +25,8 @@ const products = [
     href: "/favourites",
   },
   {
-    name: "Recently Viewed",
-    href: "/recently-viewed",
+    name: "Watched",
+    href: "/watched",
   },
 ];
 

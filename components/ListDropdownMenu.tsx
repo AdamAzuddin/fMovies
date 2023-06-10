@@ -58,12 +58,12 @@ export default function ListDropdownMenu() {
             <Menu.Item>
               {({}) => (
                 <a
-                  href="/recently-viewed"
+                  href="/watched"
                   className={classNames(
                     "block px-4 py-2 text-sm page-link"
                   )}
                 >
-                  Recently Viewed
+                  Watched
                 </a>
               )}
             </Menu.Item>
