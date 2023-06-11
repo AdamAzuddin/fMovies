@@ -2,6 +2,7 @@ import { useState } from "react";
 import Suggestions from "@components/Suggestions" 
 import theMovieDb from "@lib/themoviedb";
 import { ChangeEvent } from "react";
+import { toast } from "react-toastify";
 
 export default function Search() {
   const [searchTerm, setSearchTerm] = useState("");
@@ -33,7 +34,16 @@ export default function Search() {
   };
           
   function errorCB(data: String) {
-            console.log("Error callback: " + data);
+            toast.error(`${data}`, {
+              position: "top-right",
+              autoClose: 3000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: "dark",
+            });
       };
 
   return (

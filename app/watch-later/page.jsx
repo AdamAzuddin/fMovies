@@ -32,7 +32,6 @@ const WatchLaterPage = async () => {
       }
 
       setList(jsonArray);
-      console.log(jsonArray);
     };
 
     if (session?.user.id) {

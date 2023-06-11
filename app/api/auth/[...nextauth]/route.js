@@ -3,6 +3,7 @@ import GoogleProvider from 'next-auth/providers/google';
 
 import User from '@models/user';
 import { connectToDB } from '@utils/database';
+import { toast } from "react-toastify";
 
 const handler = NextAuth({
   providers: [
@@ -37,7 +38,16 @@ const handler = NextAuth({
 
         return true
       } catch (error) {
-        console.log("Error checking if user exists: ", error.message);
+        toast.error("Error checking if user exists: ", error.message, {
+          position: "top-right",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+        });
         return false
       }
     },
