@@ -39,7 +39,6 @@ const Details = async () => {
   const jsonDataString = useDetails((state) => state.jsonData);
   const jsonData = JSON.parse(jsonDataString || "");
   await connectToDB();
-  console.log(jsonData);
   const description = jsonData.overview;
   const name = jsonData.title || jsonData.name || jsonData.original_name;
   const posterPath = `https://image.tmdb.org/t/p/w500${
@@ -52,7 +51,6 @@ const Details = async () => {
   const media_type= jsonData.media_type;
 
   const genreIdArray = jsonData.genre_ids;
-  console.log(genreIdArray);
   const movieGenres = genres.MOVIE;
   const seriesGenres = genres.TV_SHOW;
 
