@@ -20,7 +20,7 @@ export const POST = async (req) => {
       });
     } else {
       // If the document doesn't exist, add it to the database
-      const newData = new Favourite({ creator: userId, data: movieString });
+      const newData = new Favourite({ creator: userId, data: movieString })
       console.log("Added", newData);
 
       await newData.save();

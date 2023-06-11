@@ -16,7 +16,6 @@ function Suggestion({ jsonArray, resetSuggestion }: SuggestionProps) {
           key={movie.id}
           className="text-xs md:text-xl lg:text-2xl flex my-2"
           onClick={() => {
-            console.log(movie)
             const jsonString = JSON.stringify(movie)
             setJsonData(jsonString)
             resetSuggestion()

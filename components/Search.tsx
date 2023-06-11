@@ -28,9 +28,7 @@ export default function Search() {
   };
 
   function successCB(data:string) {
-    console.log(data)
     const searchArray=JSON.parse(data).results
-    console.log(searchArray);
     setSuggestions(searchArray)
   };
           
