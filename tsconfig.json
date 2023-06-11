@@ -23,6 +23,6 @@
       "@*": ["./*"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "components/Provider.tsx", "components/Header.jsx", "app/my-profile/page.jsx", "components/Search.tsx", "app/api/lists/new-watch-later/route.js", "app/watch-later/page.jsx", "app/details/[movieId]/page.jsx", "app/favourites/page.jsx", "app/watched/page.jsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts", "components/Provider.tsx", "components/Header.jsx", "app/my-profile/page.jsx", "components/Search.tsx", "app/api/lists/new-watch-later/route.js", "app/watch-later/page.jsx", "app/details/[movieId]/page.jsx", "app/favourites/page.jsx", "app/watched/page.jsx", "components/Comment.jsx"],
   "exclude": ["node_modules"]
 }
