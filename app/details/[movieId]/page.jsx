@@ -6,11 +6,9 @@ import { HeartIcon } from "@heroicons/react/20/solid";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCheckCircle } from "@fortawesome/free-solid-svg-icons";
 import { connectToDB } from "@utils/database";
-import {
-  useSession,
-  getProviders,
-} from "next-auth/react";
+import { useSession, getProviders } from "next-auth/react";
 import { useState, useEffect } from "react";
+import { toast } from "react-toastify";
 
 function convertGenreIdToString(idArray, genres) {
   let results = [];
@@ -48,7 +46,7 @@ const Details = async () => {
   const vote_average = jsonData.vote_average;
   const release_date = jsonData.release_date;
   let currentGenres = [];
-  const media_type= jsonData.media_type;
+  const media_type = jsonData.media_type;
 
   const genreIdArray = jsonData.genre_ids;
   const movieGenres = genres.MOVIE;
@@ -71,10 +69,28 @@ const Details = async () => {
       });
 
       if (res.ok) {
-        console.log("Added to watch later list");
+        toast.success("Added to watch later list!", {
+          position: "top-right",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+        });
       }
     } catch (error) {
-      console.log(error);
+      toast.error(`${error}`, {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+      });
     }
   }
 
@@ -89,10 +105,28 @@ const Details = async () => {
       });
 
       if (res.ok) {
-        console.log("Added to favourites list");
+        toast.success("Added to favourites list!", {
+          position: "top-right",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+        });
       }
     } catch (error) {
-      console.log(error);
+      toast.error(`${error}`, {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+      });
     }
   }
 
@@ -107,10 +141,28 @@ const Details = async () => {
       });
 
       if (res.ok) {
-        console.log("Added to watched list");
+        toast.success("Added to watched list!", {
+          position: "top-right",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+        });
       }
     } catch (error) {
-      console.log(error);
+      toast.error(`${error}`, {
+        position: "top-right",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+      });
     }
   }
 

@@ -3,7 +3,9 @@
 import "@styles/globals.css";
 import NavHeader from "@components/NavHeader";
 import Provider from "@components/Provider";
-import { PropsWithChildren } from "react";
+import { PropsWithChildren } from "react";  
+import { ToastContainer} from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 export const metadata = {
   title: "fMovie",
@@ -19,6 +21,7 @@ const Layout = ({ children }: PropsWithChildren) => {
           <main className="app">
             <NavHeader />
             {children}
+            <ToastContainer/>
           </main>
         </Provider>
       </body>
