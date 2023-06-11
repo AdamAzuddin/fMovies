@@ -8,12 +8,26 @@ export const POST = async (req) => {
   try {
     await connectToDB();
 
-    const data = new WatchLater({ creator: userId, data: movieString });
-    console.log("Added", data);
+    // Check if the document already exists
+    const existingData = await WatchLater.findOne({
+      creator: userId,
+      data: movieString,
+    });
 
-    await data.save();
+    if (existingData) {
+      console.log("Movie already exists in the watch list");
+      return new Response("Movie already exists in the watch list", {
+        status: 409,
+      });
+    } else {
+      // If the document doesn't exist, add it to the database
+      const newData = new WatchLater({ creator: userId, data: movieString });
+      console.log("Added", newData);
 
-    return new Response(JSON.stringify(data), { status: 201 });
+      await newData.save();
+
+      return new Response(JSON.stringify(newData), { status: 201 });
+    }
   } catch (error) {
     return new Response(`Failed to add to watch list: ${error}`, {
       status: 500,
