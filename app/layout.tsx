@@ -7,10 +7,6 @@ import { PropsWithChildren } from "react";
 import { ToastContainer} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-export const metadata = {
-  title: "fMovie",
-  description: "Find and save movies to watch with friends and family",
-};
 
 const Layout = ({ children }: PropsWithChildren) => {
   return (
