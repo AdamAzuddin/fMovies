@@ -10,6 +10,7 @@ import { connectToDB } from "@utils/database";
 import { useSession, getProviders } from "next-auth/react";
 import { useState, useEffect } from "react";
 import { toast } from "react-toastify";
+import CommentSection from "@components/CommentSection";
 
 function convertGenreIdToString(idArray, genres) {
   let results = [];
@@ -276,7 +277,9 @@ const Details = async () => {
             </div>
           </div>
 
+          <CommentSection/>
           <Row title="You May Also Like" movies={similar} />
+
         </div>
       ) : (
         <div>No further information found</div>
