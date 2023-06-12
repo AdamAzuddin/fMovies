@@ -13,6 +13,9 @@ const CommentSchema = new Schema({
   },
   text: {
     type: String
+  },
+  time: {
+    type: String
   }
 });
 
