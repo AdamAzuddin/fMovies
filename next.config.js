@@ -20,7 +20,7 @@ const nextConfig = {
         }
         config.module.rules.push({
           test: /\.node$/i,
-          loader: "raw-loader",
+          loader: "node-loader",
         });
         return config
       }
