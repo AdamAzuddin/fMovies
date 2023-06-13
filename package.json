@@ -8,6 +8,34 @@
     "start": "next start",
     "lint": "next lint"
   },
+  "packageExtensions": {
+    "mongodb@*": {
+      "dependencies": {
+        "bson-ext": "*",
+        "kerberos": "*",
+        "@mongodb-js/zstd": "*",
+        "aws4": "*",
+        "mongodb-core": "*",
+        "bson": "*",
+        "node-gyp": "*",
+        "mongodb-client-encryption": "*"
+      },
+      "peerDependenciesMeta": {
+        "@mongodb-js/zstd": {
+          "optional": true
+        },
+        "snappy": {
+          "optional": true
+        },
+        "bson-ext": {
+          "optional": true
+        },
+        "kerberos": {
+          "optional": true
+        }
+      }
+    }
+  },
   "dependencies": {
     "@aws-sdk/credential-providers": "^3.351.0",
     "@fortawesome/fontawesome-svg-core": "^6.4.0",
