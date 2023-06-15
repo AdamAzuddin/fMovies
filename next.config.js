@@ -18,10 +18,7 @@ const nextConfig = {
           ...config.experiments,
           topLevelAwait: true,
         }
-        config.module.rules.push({
-          test: /\.node$/i,
-          loader: "node-loader",
-        });
+        
         return config
       }
 }
